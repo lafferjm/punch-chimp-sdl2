@@ -4,24 +4,27 @@
 int main(int argc, char** argv) {
 
     SDL_Window* window = nullptr;
-    SDL_Surface* screenSurface = nullptr;
+    SDL_Renderer* renderer = nullptr;
 
     if (SDL_Init(SDL_INIT_VIDEO) < 0) {
-        printf("SDL could not initialize! SDL_Error: %s\n", SDL_GetError());
-    } else {
-        window = SDL_CreateWindow("Monkey Fever", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, 468, 60, SDL_WINDOW_SHOWN);
-        if (window == nullptr) {
-            printf("Window could not be created! SDL_Error: %s\n", SDL_GetError());
-        } else {
-            screenSurface = SDL_GetWindowSurface(window);
-            SDL_FillRect(screenSurface, NULL, SDL_MapRGB(screenSurface->format, 0xFF, 0xFF, 0xFF));
-            SDL_UpdateWindowSurface(window);
-
-            SDL_Delay(2000);
-        }
+        printf("Couldn't initialize SDL: %s\n", SDL_GetError());
+        exit(1);
     }
 
-    SDL_DestroyWindow(window);
+    window = SDL_CreateWindow("Monkey Fever", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, 468, 60, 0);
+    if (!window) {
+        printf("Failed to open window: %s\n", SDL_GetError());
+        exit(1);
+    }
+
+
+    renderer = SDL_CreateRenderer(window, -1, 0);
+    SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
+    
+    SDL_RenderClear(renderer);  
+    SDL_RenderPresent(renderer);
+
+    SDL_Delay(5000);    
     SDL_Quit();
 
     return 0;
