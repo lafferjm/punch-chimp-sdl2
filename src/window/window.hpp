@@ -9,7 +9,8 @@ class Window {
         Window(std::string, int, int);
         bool is_open();
         void set_clear_color(int, int, int, int);
-        void draw();
+        void begin();
+        void end();
         SDL_Renderer* get_renderer();
     private:
         SDL_Window* m_window;

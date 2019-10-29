@@ -31,8 +31,12 @@ void Window::set_clear_color(int r, int g, int b, int a) {
     SDL_SetRenderDrawColor(m_renderer, r, g, b, a);
 }
 
-void Window::draw() {
+void Window::begin() {
     SDL_RenderClear(m_renderer);
+}
+
+void Window::end() {
+    SDL_RenderPresent(m_renderer);
 }
 
 SDL_Renderer* Window::get_renderer() {

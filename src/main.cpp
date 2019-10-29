@@ -23,10 +23,10 @@ int main(int argc, char** argv) {
             }
         }
 
-        window->draw();
+        window->begin();
         text->draw();
-
-        SDL_RenderPresent(window->get_renderer());
+        window->end();
+        
     }
     
 
