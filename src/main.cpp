@@ -20,12 +20,25 @@ int main(int argc, char** argv) {
 
     renderer = SDL_CreateRenderer(window, -1, 0);
     SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
-    
-    SDL_RenderClear(renderer);  
-    SDL_RenderPresent(renderer);
+    bool windowOpen = true;
 
-    SDL_Delay(5000);    
-    SDL_Quit();
+    while(windowOpen) {
+        SDL_Event event;
+        while (SDL_PollEvent(&event)) {
+            switch (event.type) {
+                case SDL_QUIT:
+                    SDL_Quit();
+                    exit(0);
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        SDL_RenderClear(renderer);  
+        SDL_RenderPresent(renderer);
+    }
+    
 
     return 0;
 }
