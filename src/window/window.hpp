@@ -10,6 +10,7 @@ class Window {
         bool is_open();
         void set_clear_color(int, int, int, int);
         void draw();
+        SDL_Renderer* get_renderer();
     private:
         SDL_Window* m_window;
         SDL_Renderer* m_renderer;

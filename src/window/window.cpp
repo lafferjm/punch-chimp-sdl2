@@ -35,3 +35,7 @@ void Window::draw() {
     SDL_RenderClear(m_renderer);
     SDL_RenderPresent(m_renderer);
 }
+
+SDL_Renderer* Window::get_renderer() {
+    return m_renderer;
+}
