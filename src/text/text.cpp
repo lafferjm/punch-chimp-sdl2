@@ -21,7 +21,7 @@ Text::Text(std::string message, int size, int x, int y, SDL_Renderer* renderer) 
         exit(1);
     }
 
-    m_message = SDL_CreateTextureFromSurface(renderer, m_message_surface);
+    m_message = SDL_CreateTextureFromSurface(m_renderer, m_message_surface);
     if (m_message == NULL) {
         printf("Unable to create texture from surface: %s\n", TTF_GetError());
         exit(1);
