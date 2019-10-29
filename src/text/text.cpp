@@ -12,7 +12,7 @@ Text::Text(std::string message, int size, int x, int y, SDL_Renderer* renderer) 
 
     m_renderer = renderer;
     m_font = TTF_OpenFont("resources/fonts/freesansbold.ttf", size);
-    
+
     m_black = {0, 0, 0};
 
     m_message_surface = TTF_RenderText_Solid(m_font, message.c_str(), m_black);
