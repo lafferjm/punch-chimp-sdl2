@@ -1,6 +1,7 @@
 #include <string>
 #include <stdio.h>
 #include <SDL2/SDL.h>
+#include <SDL2/SDL_ttf.h>
 
 #include "window.hpp"
 
@@ -11,6 +12,11 @@ Window::Window(std::string title, int width, int height) {
 
     if (SDL_Init(SDL_INIT_VIDEO) < 0) {
         printf("Couldn't initialize SDL: %s\n", SDL_GetError());
+        exit(1);
+    }
+
+    if (TTF_Init() < 0) {
+        printf("Couldn't initialize ttf: %s\n", TTF_GetError());
         exit(1);
     }
 
