@@ -13,9 +13,10 @@ Text::Text(std::string message, int size, int x, int y, SDL_Renderer* renderer) 
     m_renderer = renderer;
     m_font = TTF_OpenFont("resources/fonts/freesansbold.ttf", size);
 
-    m_black = {0, 0, 0};
+    SDL_Color black = {0, 0, 0};
+    SDL_Color white = {255, 255, 255};
 
-    m_message_surface = TTF_RenderText_Solid(m_font, message.c_str(), m_black);
+    m_message_surface = TTF_RenderText_Shaded(m_font, message.c_str(), black, white);
     if (m_message_surface == NULL) {
         printf("Unable to render text surface: %s\n", TTF_GetError());
         exit(1);

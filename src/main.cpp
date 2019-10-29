@@ -8,7 +8,7 @@ int main(int argc, char** argv) {
     Window* window = new Window("Monkey Fever", 468, 60);
     window->set_clear_color(255, 255, 255, 255);    
 
-    Text* text = new Text("Pummel The Chimp, And Win $$$", 28, 5, 0, window->get_renderer());
+    Text* text = new Text("Pummel The Chimp, And Win $$$", 24, 35, 0, window->get_renderer());
 
     while(window->is_open()) {
         SDL_Event event;

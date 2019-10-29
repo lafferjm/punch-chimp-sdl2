@@ -13,7 +13,6 @@ class Text {
         SDL_Surface* m_message_surface;
         SDL_Texture* m_message;
         SDL_Rect m_message_rect;
-        SDL_Color m_black;
 
         SDL_Renderer* m_renderer;
 };
