@@ -1,6 +1,7 @@
 #include <string>
 #include <stdio.h>
 #include <SDL2/SDL.h>
+#include <SDL2/SDL_mixer.h>
 #include <SDL2/SDL_ttf.h>
 
 #include "window.hpp"
@@ -10,7 +11,7 @@ Window::Window(std::string title, int width, int height) {
     m_renderer = nullptr;
     m_is_open = true;
 
-    if (SDL_Init(SDL_INIT_VIDEO) < 0) {
+    if (SDL_Init(SDL_INIT_VIDEO | SDL_INIT_AUDIO) < 0) {
         printf("Couldn't initialize SDL: %s\n", SDL_GetError());
         exit(1);
     }
@@ -26,6 +27,8 @@ Window::Window(std::string title, int width, int height) {
         printf("Failed to open window: %s\n", SDL_GetError());
         exit(1);
     }
+
+    Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 1024);
 
     m_renderer = SDL_CreateRenderer(m_window, -1, SDL_RENDERER_PRESENTVSYNC);
 }

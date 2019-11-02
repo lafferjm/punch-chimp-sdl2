@@ -54,3 +54,7 @@ void Chimp::walk() {
 
     m_position.x = new_position;
 }
+
+SDL_Rect Chimp::get_rect() {
+    return m_position;
+}
