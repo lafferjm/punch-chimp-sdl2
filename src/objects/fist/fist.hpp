@@ -17,7 +17,6 @@ class Fist : protected Sprite {
     private:
         SDL_Renderer* m_renderer;
         SDL_Texture* m_texture;
-        SDL_Rect m_position;
 
         bool m_punching;
 
