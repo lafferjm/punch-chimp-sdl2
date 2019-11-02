@@ -14,6 +14,12 @@ class Chimp {
         SDL_Rect m_position;
         int m_x_offset;
         int m_y_offset;
+
+        int m_move_speed;
+        int m_dizzy;
+
+        void spin();
+        void walk();
 };
 
 #endif

@@ -16,8 +16,37 @@ Chimp::Chimp(std::string resource, SDL_Renderer* renderer) {
     m_position.h = image->h;
     m_position.x = 0;
     m_position.y = 0;
+
+    m_move_speed = 9;
+    m_dizzy = 0;
 }
 
 void Chimp::draw() {
+    if (m_dizzy > 0) {
+        spin();
+    } else {
+        walk();
+    }
+
     SDL_RenderCopy(m_renderer, m_texture, NULL, &m_position);
+}
+
+void Chimp::spin() {
+
+}
+
+void Chimp::walk() {
+    float new_position = m_position.x + m_move_speed;
+    int right_bounds = 0;
+    SDL_GetRendererOutputSize(m_renderer, &right_bounds, NULL);
+
+    if (new_position >= right_bounds - m_position.w) {
+        m_move_speed = m_move_speed * -1;
+        new_position = m_position.x + m_move_speed;
+    } else if (new_position <= 0) {
+        m_move_speed = m_move_speed * -1;
+        new_position = m_position.x + m_move_speed;
+    }
+
+    m_position.x = new_position;
 }
