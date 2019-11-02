@@ -1,22 +1,17 @@
 #ifndef __CHIMP_HPP__
 #define __CHIMP_HPP__
 
+
 #include <string>
 #include <SDL2/SDL.h>
+#include "../../graphics/sprite/sprite.hpp"
 
-class Chimp {
+class Chimp : public Sprite {
     public:
         Chimp(std::string, SDL_Renderer*);
-        void draw();
+        void update() override;
         void punched();
-        SDL_Rect get_rect();
     private:
-        SDL_Renderer* m_renderer;
-        SDL_Texture* m_texture;
-        SDL_Rect m_position;
-        int m_x_offset;
-        int m_y_offset;
-
         int m_move_speed;
         int m_dizzy;
         SDL_RendererFlip m_flip;

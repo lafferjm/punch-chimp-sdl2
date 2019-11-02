@@ -38,7 +38,7 @@ int main(int argc, char** argv) {
 
         window->begin();
         text->draw();
-        chimp->draw();
+        chimp->update();
         fist->update();
         window->end();
         

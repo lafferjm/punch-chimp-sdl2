@@ -2,20 +2,12 @@
 #include <SDL2/SDL.h>
 #include "chimp.hpp"
 
-Chimp::Chimp(std::string resource, SDL_Renderer* renderer) {
-    m_renderer = renderer;
-
-    SDL_Surface* image = SDL_LoadBMP(resource.c_str());
-    SDL_SetColorKey(image, SDL_TRUE, SDL_MapRGB(image->format, 255, 0, 0));
-    m_texture = SDL_CreateTextureFromSurface(renderer, image);
-
-    m_x_offset = image->h / 2;
-    m_y_offset = image->w / 2;
-
-    m_position.w = image->w;
-    m_position.h = image->h;
-    m_position.x = 0;
-    m_position.y = 0;
+Chimp::Chimp(std::string resource, SDL_Renderer* renderer) :
+    Sprite(resource, renderer)
+{
+    set_colorkey(255, 0, 0);
+    set_offset(0, 0);
+    set_position(0, 0);
 
     m_move_speed = 9;
     m_dizzy = 0;
@@ -23,7 +15,7 @@ Chimp::Chimp(std::string resource, SDL_Renderer* renderer) {
     m_flip = SDL_FLIP_NONE;
 }
 
-void Chimp::draw() {
+void Chimp::update() {
     if (m_dizzy > 0) {
         spin();
     } else {
@@ -55,15 +47,11 @@ void Chimp::walk() {
         m_flip = SDL_FLIP_NONE;
     }
 
-    m_position.x = new_position;
+    set_position(new_position, get_position().y);
 }
 
 void Chimp::punched() {
     if (!m_dizzy) {
         m_dizzy = 1;
     }
-}
-
-SDL_Rect Chimp::get_rect() {
-    return m_position;
 }
