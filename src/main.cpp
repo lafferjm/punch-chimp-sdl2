@@ -27,7 +27,7 @@ int main(int argc, char** argv) {
 
         window->begin();
         text->draw();
-        fist->draw();
+        //fist->draw();
         window->end();
         
     }
