@@ -1,6 +1,7 @@
 #include <SDL2/SDL.h>
 #include <stdio.h>
 
+#include "objects/chimp/chimp.hpp"
 #include "objects/fist/fist.hpp"
 #include "text/text.hpp"
 #include "window/window.hpp"
@@ -11,6 +12,7 @@ int main(int argc, char** argv) {
 
     Text* text = new Text("Pummel The Chimp, And Win $$$", 24, 35, 0, window->get_renderer());
     Fist* fist = new Fist("resources/textures/fist.bmp", window->get_renderer());
+    Chimp* chimp = new Chimp("resources/textures/chimp.bmp", window->get_renderer());
 
     while(window->is_open()) {
         SDL_Event event;
@@ -27,6 +29,7 @@ int main(int argc, char** argv) {
 
         window->begin();
         text->draw();
+        chimp->draw();
         //fist->draw();
         window->end();
         
