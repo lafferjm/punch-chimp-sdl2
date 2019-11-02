@@ -34,7 +34,10 @@ void Chimp::draw() {
 }
 
 void Chimp::spin() {
-
+    m_dizzy = m_dizzy + 12;
+    if (m_dizzy >= 360) {
+        m_dizzy = 0;
+    }
 }
 
 void Chimp::walk() {
@@ -53,6 +56,12 @@ void Chimp::walk() {
     }
 
     m_position.x = new_position;
+}
+
+void Chimp::punched() {
+    if (!m_dizzy) {
+        m_dizzy = 1;
+    }
 }
 
 SDL_Rect Chimp::get_rect() {

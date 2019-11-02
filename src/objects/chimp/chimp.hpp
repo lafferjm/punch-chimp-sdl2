@@ -8,6 +8,7 @@ class Chimp {
     public:
         Chimp(std::string, SDL_Renderer*);
         void draw();
+        void punched();
         SDL_Rect get_rect();
     private:
         SDL_Renderer* m_renderer;
