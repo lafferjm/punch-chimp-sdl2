@@ -27,7 +27,7 @@ Window::Window(std::string title, int width, int height) {
         exit(1);
     }
 
-    m_renderer = SDL_CreateRenderer(m_window, -1, 0);
+    m_renderer = SDL_CreateRenderer(m_window, -1, SDL_RENDERER_PRESENTVSYNC);
 }
 
 bool Window::is_open() {
