@@ -5,12 +5,13 @@
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_mixer.h>
 
+#include "../../graphics/sprite/sprite.hpp"
 #include "../chimp/chimp.hpp"
 
-class Fist {
+class Fist : protected Sprite {
     public:
         Fist(std::string, SDL_Renderer*);
-        void draw();
+        void update() override;
         void punch(Chimp*);
         void unpunch();
     private:
@@ -18,8 +19,6 @@ class Fist {
         SDL_Texture* m_texture;
         SDL_Rect m_position;
 
-        int m_x_offset;
-        int m_y_offset;
         bool m_punching;
 
         Mix_Chunk* m_whiff_sound;

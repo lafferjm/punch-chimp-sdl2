@@ -17,21 +17,20 @@ Fist::Fist(std::string resource, SDL_Renderer* renderer) {
     m_position.w = image->w;
     m_position.h = image->h;
 
-    m_x_offset = image->h / 2;
-    m_y_offset = image->w / 2;
+    set_offset(image->h / 2, image->w / 2);
 
     SDL_GetMouseState(&m_position.x, &m_position.y);
-    m_position.x = m_position.x - m_x_offset;
-    m_position.y = m_position.y - m_y_offset;
+    m_position.x = m_position.x - m_offset.x;
+    m_position.y = m_position.y - m_offset.y;
 
     m_punch_sound = Mix_LoadWAV("resources/sounds/punch.wav");
     m_whiff_sound = Mix_LoadWAV("resources/sounds/whiff.wav");
 }
 
-void Fist::draw() {
+void Fist::update() {
     SDL_GetMouseState(&m_position.x, &m_position.y);
-    m_position.x = m_position.x - m_x_offset;
-    m_position.y = m_position.y - m_y_offset;
+    m_position.x = m_position.x - m_offset.x;
+    m_position.y = m_position.y - m_offset.y;
 
     if (m_punching) {
         m_position.x = m_position.x + 5;

@@ -39,7 +39,7 @@ int main(int argc, char** argv) {
         window->begin();
         text->draw();
         chimp->draw();
-        fist->draw();
+        fist->update();
         window->end();
         
     }
