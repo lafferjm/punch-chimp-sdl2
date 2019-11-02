@@ -11,6 +11,9 @@ class Sprite {
         void set_position(int, int);
         void move(int, int);
         void set_colorkey(int, int, int);
+        SDL_Point get_offset();
+        SDL_Rect get_rect();
+        SDL_Point get_position();
         virtual void update() = 0;
     protected:
         SDL_Renderer* m_renderer;

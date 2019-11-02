@@ -36,3 +36,19 @@ void Sprite::set_colorkey(int r, int g, int b) {
     SDL_SetColorKey(m_image, SDL_TRUE, SDL_MapRGB(m_image->format, r, g, b));
     m_texture = SDL_CreateTextureFromSurface(m_renderer, m_image);
 }
+
+SDL_Point Sprite::get_offset() {
+    return m_offset;
+}
+
+SDL_Rect Sprite::get_rect() {
+    return m_position;
+}
+
+SDL_Point Sprite::get_position() {
+    SDL_Point point;
+    point.x = m_position.x;
+    point.y = m_position.y;
+
+    return point;
+}
