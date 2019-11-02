@@ -1,9 +1,10 @@
 #include <string>
 #include <SDL2/SDL.h>
+#include <SDL2/SDL_mixer.h>
 #include "fist.hpp"
 #include "../chimp/chimp.hpp"
 
-#include <iostream>
+#include <stdio.h>
 
 Fist::Fist(std::string resource, SDL_Renderer* renderer) {
     m_punching = false;
@@ -22,6 +23,9 @@ Fist::Fist(std::string resource, SDL_Renderer* renderer) {
     SDL_GetMouseState(&m_position.x, &m_position.y);
     m_position.x = m_position.x - m_x_offset;
     m_position.y = m_position.y - m_y_offset;
+
+    m_punch_sound = Mix_LoadWAV("resources/sounds/punch.wav");
+    m_whiff_sound = Mix_LoadWAV("resources/sounds/whiff.wav");
 }
 
 void Fist::draw() {
@@ -43,9 +47,9 @@ void Fist::punch(Chimp* chimp) {
         SDL_Rect chimp_rect = chimp->get_rect();
 
         if (SDL_HasIntersection(&m_position, &chimp_rect) == SDL_TRUE) {
-            std::cout << "Hit" << std::endl;
+            Mix_PlayChannel(-1, m_punch_sound, 0);
         } else {
-            std::cout << "not hit" << std::endl;
+            Mix_PlayChannel(-1, m_whiff_sound, 0);
         }
     }
 }
