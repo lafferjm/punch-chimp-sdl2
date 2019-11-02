@@ -17,6 +17,7 @@ class Chimp {
 
         int m_move_speed;
         int m_dizzy;
+        SDL_RendererFlip m_flip;
 
         void spin();
         void walk();
