@@ -3,6 +3,8 @@
 #include "fist.hpp"
 #include "../chimp/chimp.hpp"
 
+#include <iostream>
+
 Fist::Fist(std::string resource, SDL_Renderer* renderer) {
     m_punching = false;
     m_renderer = renderer;
@@ -38,6 +40,13 @@ void Fist::draw() {
 void Fist::punch(Chimp* chimp) {
     if (!m_punching) {
         m_punching = true;
+        SDL_Rect chimp_rect = chimp->get_rect();
+
+        if (SDL_HasIntersection(&m_position, &chimp_rect) == SDL_TRUE) {
+            std::cout << "Hit" << std::endl;
+        } else {
+            std::cout << "not hit" << std::endl;
+        }
     }
 }
 
