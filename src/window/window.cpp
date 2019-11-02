@@ -20,6 +20,7 @@ Window::Window(std::string title, int width, int height) {
         exit(1);
     }
 
+    SDL_ShowCursor(SDL_DISABLE);
     m_window = SDL_CreateWindow(title.c_str(), SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, width, height, 0);
     if (!m_window) {
         printf("Failed to open window: %s\n", SDL_GetError());
