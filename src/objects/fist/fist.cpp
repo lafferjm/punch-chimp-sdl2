@@ -48,6 +48,7 @@ void Fist::punch(Chimp* chimp) {
 
         if (SDL_HasIntersection(&m_position, &chimp_rect) == SDL_TRUE) {
             Mix_PlayChannel(-1, m_punch_sound, 0);
+            chimp->punched();
         } else {
             Mix_PlayChannel(-1, m_whiff_sound, 0);
         }
