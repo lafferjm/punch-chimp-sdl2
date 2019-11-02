@@ -22,6 +22,15 @@ int main(int argc, char** argv) {
                     SDL_Quit();
                     exit(0);
                     break;
+                case SDL_MOUSEBUTTONDOWN:
+                    if (event.button.button == SDL_BUTTON_LEFT) {
+                        fist->punch(chimp);
+                    }
+                    break;
+                case SDL_MOUSEBUTTONUP:
+                    if (event.button.button == SDL_BUTTON_LEFT) {
+                        fist->unpunch();
+                    }
                 default:
                     break;
             }

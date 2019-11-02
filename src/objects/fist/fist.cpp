@@ -1,8 +1,10 @@
 #include <string>
 #include <SDL2/SDL.h>
 #include "fist.hpp"
+#include "../chimp/chimp.hpp"
 
 Fist::Fist(std::string resource, SDL_Renderer* renderer) {
+    m_punching = false;
     m_renderer = renderer;
 
     SDL_Surface* image = SDL_LoadBMP(resource.c_str());
@@ -25,5 +27,20 @@ void Fist::draw() {
     m_position.x = m_position.x - m_x_offset;
     m_position.y = m_position.y - m_y_offset;
 
+    if (m_punching) {
+        m_position.x = m_position.x + 5;
+        m_position.y = m_position.y + 10;
+    }
+
     SDL_RenderCopy(m_renderer, m_texture, NULL, &m_position);
+}
+
+void Fist::punch(Chimp* chimp) {
+    if (!m_punching) {
+        m_punching = true;
+    }
+}
+
+void Fist::unpunch() {
+    m_punching = false;
 }
